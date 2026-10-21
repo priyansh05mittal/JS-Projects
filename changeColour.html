@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Colour</title>
+</head>
+<body>
+    <h2>Background Colour: <span id="color"></span></h2>
+
+    <button id="changeColor">Change Backgroud Colour</button>
+
+    <script>
+        let colours = ['red', 'blue', 'yellow', 'orange', 'pink'];
+
+        let color = document.getElementById('color');
+        let changeBtn = document.getElementById('changeColor');
+
+        changeBtn.addEventListener('click', () => {
+            let index = Math.floor(Math.random() * 5);
+            color.textContent = colours[index];
+            document.body.style.backgroundColor = colours[index];
+            console.log(colours[index]);
+            console.log(index);
+        })
+    </script>
+</body>
+</html>

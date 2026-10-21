@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+<body>
+    <h2>Counter: <span id="counter"></span></h2>
+
+    <button id="increment">+</button>
+    <button id="decrement">-</button>
+
+    <p id="error" style="color: red;"></p>
+
+    <script>
+        let counter = document.getElementById('counter');
+        let increment = document.getElementById('increment');
+        let decrement = document.getElementById('decrement');
+        let error = document.getElementById('error');
+
+        let count = 0;
+
+        counter.textContent = count;
+
+        increment.addEventListener('click', () => {
+            count += 1;
+            counter.textContent = count;
+        })
+
+        decrement.addEventListener('click', () => {
+                if(count > 0){
+                    count -= 1;
+                    counter.textContent = count;
+                }else{
+                    error.textContent = 'Counter can not be below 0.';
+
+                    setTimeout(() => {
+                        error.textContent="";
+                    }, 3000);
+                }
+            })
+
+    </script>
+</body>
+</html>
