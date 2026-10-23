@@ -8,26 +8,45 @@
 <body>
     <h1>Our Digital Clock:</h1>
     <h2 id="time"></h2>
+    <h2>Another way of showing time:</h2>
+    <h2 id="time2"></h2>
     <h2 id="date"></h2>
+    <h2 id="timezone"></h2>
 
     <script>
-        setInterval(() => {
-            let date = new Date();
+        // Cache DOM element references
+            const timeEl = document.getElementById('time');
+            const time2El = document.getElementById('time2');
+            const dateEl = document.getElementById('date');
+            const timezoneEl = document.getElementById('timezone');
 
-            let hours = date.getHours();
-            let mins = date.getMinutes();
-            let secs = date.getSeconds();
-            let mlSecs = date.getMilliseconds();
-            let dt = date.getDate();
-            let month = date.getMonth();
-            let year = date.getFullYear();
+            // Update clock
+            function updateClock() {
+                const date = new Date();
 
-            let time = hours + " : " + mins + " : " + secs + " : " + mlSecs;
-            let currentDate = dt + "/" + month + "/" + year;
+                const hours = String(date.getHours()).padStart(2, '0');
+                const min = String(date.getMinutes()).padStart(2, '0');
+                const sec = String(date.getSeconds()).padStart(2, '0');
 
-            document.querySelector("h2").textContent = time;
-            document.getElementById('date').textContent = currentDate;
-        }, 1);
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+
+                const time2 = date.toLocaleTimeString();
+                const time = `${hours} : ${min} : ${sec}`;
+                const currentDt = `${day}/${month}/${year}`;
+
+                const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+                timeEl.textContent = time;
+                time2El.textContent = time2;
+                dateEl.textContent = currentDt;
+                timezoneEl.textContent = timezone;
+            }
+
+            updateClock();
+
+            setInterval(updateClock, 1000);
     </script>
 </body>
 </html>
